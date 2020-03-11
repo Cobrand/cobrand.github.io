@@ -33,6 +33,8 @@ let nades_in_play = 0;
 
 let is_currently_shielding = false;
 
+let grenade_mean_delay = 3500;
+
 function play_sound(sound) {
     if (sound.paused) {
         sound.play()
@@ -42,13 +44,16 @@ function play_sound(sound) {
 
 }
 
+function change_difficulty(e) {
+    grenade_mean_delay = parseInt(e.target.value) || 3500;
+}
+
 function grenade_pull() {
     if (nades_in_play >= 2) {
         return;
     }
     nades_in_play += 1;
     play_sound(SOUNDS.nade_pull);
-    setTimeout(() => SOUNDS.nade_pull.play(), 1);
     setTimeout(grenade_explode, 2500);
 }
 
@@ -88,25 +93,24 @@ function start_stop() {
         document.getElementById('start_btn').innerText = 'Stop';
     } else {
         clearTimeout(timeout_handler);
+        timeout_handler = undefined;
         document.getElementById('start_btn').innerText = 'Start';
     }
 }
 
 function random_nade() {
     grenade_pull();
-    let next_nade_timeout = 500 + Math.random() * 7000;
+    let next_nade_timeout = 500 + Math.random() * grenade_mean_delay * 2;
     timeout_handler = setTimeout(random_nade, next_nade_timeout);
 }
 
 function start_shield() {
-    SOUNDS.shield_on.pause();
-    SOUNDS.shield_on.play();
+    play_sound(SOUNDS.shield_on)
     is_currently_shielding = true;
 }
 
 function stop_shield() {
-    SOUNDS.shield_off.pause();
-    SOUNDS.shield_off.play();
+    play_sound(SOUNDS.shield_off)
     is_currently_shielding = false;
 }
 
@@ -131,7 +135,7 @@ function refresh() {
     document.getElementById('score').innerText = nades_score.success;
     document.getElementById('total').innerText = nades_score.total;
 }
-setInterval(refresh, 100);
+setInterval(refresh, 50);
 
 document.addEventListener('keydown', (ev) => {
     if (!ev.repeat && ev.key == 's') {
@@ -144,3 +148,5 @@ document.addEventListener('keyup', (ev) => {
         stop_shield();
     }
 })
+
+document.getElementById('difficulty').onchange = change_difficulty;

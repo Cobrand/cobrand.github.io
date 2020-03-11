@@ -10,23 +10,29 @@
 </head>
 
 <body>
-  <script src="script.js"></script>
-
   <div id="main" class="main">
       <div class="scoreboard">
-        <br>
-        <button onclick="start_stop()" id="start_btn">Start</button><br>
+        <h1> Snake grenades simulator</h1>
+        Frequency: <select id="difficulty">
+          <option value="2000">Spammer</option>
+          <option value="3500" selected>Normal Rate</option>
+          <option value="5500">Slower Rate</option>
+          <option value="20000">vs Ness</option>
+        </select>       <button onclick="start_stop()" id="start_btn"><b>Start</b></button> <br>
         Press <b>S</b> to shield the grenades.<br>
         <b>Shield rate</b> is how much of the time you're shielding while a grenade is pulled.
         <b>Success rate</b> is how many grenades you've been shielding successfully. <br>
-        The goal is to keep the shield rate low, while keeping the success rate to 100%.<br>
+        The goal is to keep the shield rate low, while keeping the success rate at 100%.<br>
         <br>
         Try to learn the timing at first, then play this mini game while doing something else (watch a movie, analyze a VOD, talk to someone, ...).
-        You'll learn the timing of the grenades in no time.<br><br>
+        You'll learn the timing of the grenades in no time.
+        <br><br>
         <b>Score:</b> <span id="score">0</span> / <span id="total">0</span><br>
         <b>Success Rate:</b> <span id="success_rate">0</span>%<br>
         <b>Shield Rate:</b> <span id="shield_rate">0</span>%<br>
       </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
