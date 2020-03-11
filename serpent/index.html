@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Serpent</title>
+
+  <link rel="stylesheet" href="styles.css?v=1.0">
+</head>
+
+<body>
+  <script src="script.js"></script>
+
+  <div id="main" class="main">
+      <div class="scoreboard">
+        <br>
+        <button onclick="start_stop()" id="start_btn">Start</button><br>
+        Press <b>S</b> to shield the grenades.<br>
+        <b>Shield rate</b> is how much of the time you're shielding while a grenade is pulled.
+        <b>Success rate</b> is how many grenades you've been shielding successfully. <br>
+        The goal is to keep the shield rate low, while keeping the success rate to 100%.<br>
+        <br>
+        Try to learn the timing at first, then play this mini game while doing something else (watch a movie, analyze a VOD, talk to someone, ...).
+        You'll learn the timing of the grenades in no time.
+        <h1>Scoreoard</h1>
+        <b>Score:</b> <span id="score">0</span> / <span id="total">0</span><br>
+        <b>Success Rate:</b> <span id="success_rate">0</span>%<br>
+        <b>Shield Rate:</b> <span id="shield_rate">0</span>%<br>
+      </div>
+  </div>
+</body>
+</html>
